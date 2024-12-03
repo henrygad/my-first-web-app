@@ -131,13 +131,13 @@ const Profilesec = (
     },
     {
       menu: {
-        name: 'advaterssec',
-        content: <Button children={`Avater (${!numberOfAvatersLoading ? numberOfAvaters : 0}) `}
-          buttonClass='' handleClick={() => handleCurrentProfileContentTab('advaterssec')} />,
-        tab: <div>Profile images</div>,
+        name: 'advatarssec',
+        content: <Button children={`Profile image (${!numberOfAvatersLoading ? numberOfAvaters : 0}) `}
+          buttonClass='' handleClick={() => handleCurrentProfileContentTab('advatarssec')} />,
+        tab: <div>Profile image</div>,
       },
       tab: {
-        name: 'advaterssec',
+        name: 'advatarssec',
         content: <Avatersec
           profileAvatersData={profileAvatersData}
           profileAvatersLoading={profileAvatersLoading}
@@ -164,81 +164,88 @@ const Profilesec = (
             (profileData) &&
               Object.keys(profileData).length ?
               <div id='profile-data-display-wrapper'>
-                <div id='profile-datails' className='flex justify-between items-start'>
+                <div id='profile-datails' className=''>
                   {/* display profile detail */}
-                  <div className='space-y-1'>
+                  <div className='flex-1 space-y-1'>
                     {/* profile data */}
-                    <div>
-                      <Link to={isAccountOwner ? '/editprofile' : ''} className='block w-14'>
-                        <Displayimage
-                          placeHolder={avaterPlaceholder}
-                          id={'avater'}
-                          imageId={profileData?.displayImage}
-                          parentClass='h-14 w-14'
-                          imageClass='object-contain rounded-full'
-                          onClick={() => ''}
-                        />
-                      </Link>
+                    <div id='profile-avatar' className='flex justify-between gap-4'>
                       <div>
-                        <span id='name' className='block text-base font-semibold' >
-                          {profileData?.name}
-                        </span>
-                        <span id='userName' className='text-sm opacity-50 '>
-                          {profileData?.userName}
-                        </span>
+                        <Link to={isAccountOwner ? '/editprofile' : ''} className='block w-14'>
+                          <Displayimage
+                            placeHolder={avaterPlaceholder}
+                            id={'avater'}
+                            imageId={profileData?.displayImage}
+                            parentClass='h-14 w-14'
+                            imageClass='object-contain rounded-full'
+                            onClick={() => ''}
+                          />
+                        </Link>
+                        <div>
+                          <span id='name' className='block text-base font-semibold' >
+                            {profileData?.name}
+                          </span>
+                          <span id='userName' className='text-sm opacity-50 '>
+                            {profileData?.userName}
+                          </span>
+                        </div>
+                      </div>
+                      <div className='relative flex justify-end items-start gap-9'>
+                        
+                        {!isAccountOwner ?
+                          <Followbutton userNameToFollow={profileData?.userName} /> :
+                          null
+                        }
+                        <div className='relative -mt-4'>
+                          <Userdotnav
+                            userName={profileData?.userName}
+                          />
+                        </div>
                       </div>
                     </div>
-                    <div id='bio' className='font-text'>
-                      <span className='block md:text-base text-wrap max-w-[480px]'
-                        dangerouslySetInnerHTML={sanitizeHTML(profileData?.bio || '')}></span>
-                    </div>
-                    <div id='sex-dateOfBirth' className='flex flex-col gap-1 text-sm'>
-                      <span className=' capitalize' >{profileData?.sex || ''}</span>
-                      <span >{handleReadableDate(profileData?.dateOfBirth || '')}</span>
-                    </div>
-                    <div id="email-phoneNumber-website" className='flex flex-col gap-1 text-sm'>
-                      <div className='mt-1'></div>
-                      <span>{profileData?.email || ''}</span>
-                      <span>{profileData?.phoneNumber || ''}</span>
-                      <a href={profileData?.website || ''} className='underline cursor-pointer' target='_blank'>
-                        {profileData?.website || ''}
-                      </a>
-                      <span id='country'>{profileData?.country}</span>
-                    </div>
-                  </div>
-                  <div className='flex-1 flex flex-col items-end gap-8 relative h-full'>
-                    {/* user intertractions */}
-                    <Userdotnav
-                      userName={profileData?.userName}
-                    />
-                    <div id='space'></div>
-                    {!isAccountOwner ?
-                      <Followbutton userNameToFollow={profileData?.userName} /> :
-                      null
-                    }
-                    <div className='flex items-center justify-end gap-3'>
-                      <Button
-                        id='followers-btn'
-                        buttonClass='font-text hover:text-green-500 transition-color'
-                        handleClick={() => { setProfileDialog('profiledialog'); setCurreentProfileDialogTab('followerssec') }}
-                        children={
-                          <>
-                            <span>Followers</span>
-                            <span className='block text-center'>{profileData?.followers?.length || 0}</span>
-                          </>
-                        }
-                      />
-                      <Button
-                        id='following-btn'
-                        buttonClass='font-text hover:text-green-500 transition-color'
-                        handleClick={() => { setProfileDialog('profiledialog'); setCurreentProfileDialogTab('followingsec') }}
-                        children={
-                          <>
-                            <span>Following</span>
-                            <span className='block text-center'>{profileData?.following?.length || 0}</span>
-                          </>
-                        }
-                      />
+                    <div className='flex flex-wrap justify-between items-center  gap-4 '>
+                      <div >
+                        <div id='bio' className='font-text'>
+                          <span className='block md:text-base text-wrap max-w-[480px]'
+                            dangerouslySetInnerHTML={sanitizeHTML(profileData?.bio || '')}></span>
+                        </div>
+                        <div id='sex-dateOfBirth' className='flex flex-col gap-1 text-sm'>
+                          <span className=' capitalize' >{profileData?.sex || ''}</span>
+                          <span >{handleReadableDate(profileData?.dateOfBirth || '')}</span>
+                        </div>
+                        <div id="email-phoneNumber-website" className='flex flex-col gap-1 text-sm'>
+                          <div className='mt-1'></div>
+                          <span>{profileData?.email || ''}</span>
+                          <span>{profileData?.phoneNumber || ''}</span>
+                          <a href={profileData?.website || ''} className='underline cursor-pointer' target='_blank'>
+                            {profileData?.website || ''}
+                          </a>
+                          <span id='country'>{profileData?.country}</span>
+                        </div>
+                      </div>
+                      <div className='flex-1 flex justify-end items-end gap-3'>
+                        <Button
+                          id='followers-btn'
+                          buttonClass='font-text hover:text-green-500 transition-color'
+                          handleClick={() => { setProfileDialog('profiledialog'); setCurreentProfileDialogTab('followerssec') }}
+                          children={
+                            <>
+                              <span>Followers</span>
+                              <span className='block text-center'>{profileData?.followers?.length || 0}</span>
+                            </>
+                          }
+                        />
+                        <Button
+                          id='following-btn'
+                          buttonClass='font-text hover:text-green-500 transition-color'
+                          handleClick={() => { setProfileDialog('profiledialog'); setCurreentProfileDialogTab('followingsec') }}
+                          children={
+                            <>
+                              <span>Following</span>
+                              <span className='block text-center'>{profileData?.following?.length || 0}</span>
+                            </>
+                          }
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -261,15 +268,15 @@ const Profilesec = (
                 <Dialog
                   id="profile-intertractions-dialog"
                   parentClass=""
-                  childClass="container relative rounded-sm space-y-2 w-full h-full py-8 bg-white dark:bg-stone-800 dark:text-white overflow-hidden"
+                  childClass="container relative rounded-sm space-y-2 w-full h-full py-4 bg-white dark:bg-stone-800 dark:text-white overflow-hidden"
                   currentDialog="profiledialog"
                   dialog={profileDialog}
                   setDialog={setProfileDialog}
                   children={
                     <>
-                      <div className='flex gap-4'>
+                      <div className='flex gap-4 mb-6'>
                         <Button
-                          id="authentication-dialog-close-btn"
+                          id="profile-intertractions-dialog-close-btn"
                           buttonClass=''
                           children={<IoMdArrowRoundBack size={20} />}
                           handleClick={() => setProfileDialog(' ')}

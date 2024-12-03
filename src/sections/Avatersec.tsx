@@ -46,14 +46,15 @@ const Avatersec = ({
             profileAvatersData &&
               profileAvatersData.length ?
               <>
-                {profileAvatersData.map((item, index) =>
-                  <SingleImage
-                    key={item._id}
-                    image={item}
-                    index={index}
-                    placeHolder={avaterPlaceHolder}
-                  />
-                )}
+                {profileAvatersData
+                  .map((item, index) =>
+                    <SingleImage
+                      key={item._id}
+                      image={item}
+                      index={index}
+                      placeHolder={avaterPlaceHolder}
+                    />
+                  )}
               </> :
               null
           }</> :

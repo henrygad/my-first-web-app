@@ -89,5 +89,5 @@ bottom-0
 right-0 
 left-0
 min-h-screen
-z-50
+z-[100]
 `

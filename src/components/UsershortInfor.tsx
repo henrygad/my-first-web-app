@@ -20,7 +20,7 @@ const UsershortInfor = ({ userName, displayName = true }: { userName: string, di
 
     return <>
         {userData ?
-            <Link to={'/' + userName} className="flex items-start justify-start gap-3">
+            <Link to={'/' + userName} className="flex items-start justify-start gap-3 ">
                 {
                     userData ?
                         <>
@@ -34,7 +34,7 @@ const UsershortInfor = ({ userName, displayName = true }: { userName: string, di
                             />
                             {displayName ?
                                 <div className='flex flex-col font-secondary '>
-                                    <span id='name' className='text-base font-semibold  ' >{userData.name}</span>
+                                    <span id='name' className='text-sm font-semibold' >{userData.name}</span>
                                     <span id='userName' className='text-[0.8rem] opacity-50 ' >{userData.userName}</span>
                                 </div> :
                                 null}
@@ -43,7 +43,10 @@ const UsershortInfor = ({ userName, displayName = true }: { userName: string, di
                 }
             </Link>
             :
-            <div className="h-11 w-11">loading profile...</div>}
+            <div className="flex items-start justify-start gap-3 animate-pulse">
+                <div id="image-pulse" className="h-9 w-9 bg-slate-200 rounded-full"></div>
+                <div className="w-[80px] h-2 bg-slate-200 rounded-sm"></div>
+            </div>}
     </>
 }
 

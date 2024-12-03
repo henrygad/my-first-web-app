@@ -20,7 +20,7 @@ const Followbutton = ({ userNameToFollow }: { userNameToFollow: string }) => {
     const notify = useNotification();
 
     const handleFollow = async (userNameToFollow: string) => { 
-        if (followed && isLogin) {
+        if (!followed && isLogin) {
             setFollowed(true);
 
             const body = null;
@@ -76,7 +76,7 @@ const Followbutton = ({ userNameToFollow }: { userNameToFollow: string }) => {
 
     return  <Button
         id='follow-btn'
-        buttonClass="font-secondary text-base font-semibold  border py-1 px-2 rounded-md"
+        buttonClass="font-secondary font-semibold  border py-1 px-2 rounded-md"
         children={(!followed ? 'Follow' : 'Following')}
         handleClick={() => { !followed ? handleFollow(userNameToFollow) : handleUnfollow(userNameToFollow) }}
     />

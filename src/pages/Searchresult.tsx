@@ -152,7 +152,7 @@ const Searchresult = () => {
         ]}
       /> :
       <div className="min-w-[280px] sm:min-w-[320px] md:min-w-[768px]">
-        <div>
+        <div className="space-y-2">
           {
             Array(3).fill('').map((_, index) =>
               <div key={index} className="w-full flex justify-start items-start gap-2 animate-pulse">

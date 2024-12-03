@@ -104,7 +104,7 @@ const Editeprofile = () => {
     }, [getProfileData?.userName]);
 
     return <div>
-        <Backwardnav pageName="Edite profile" />
+        <Backwardnav pageName="Edit profile" />
         {!getProfileDataLoading && bio._html?
             <div id="profile-edit-form-wrapper" className="font-text space-y-20">
                 <div className="w-full space-y-8 max-w-[480px]">
@@ -121,7 +121,7 @@ const Editeprofile = () => {
                             <Button
                                 id="avater-cancle-btn"
                                 buttonClass="border rounded-md p-1 "
-                                children="Cancle"
+                                children="Cancel"
                                 handleClick={() => setImageUrl('')}
                             />
                             <Button
@@ -148,7 +148,7 @@ const Editeprofile = () => {
                             <Button
                                 id="full-name-cancle-btn"
                                 buttonClass="border rounded-md p-1 "
-                                children="Cancle"
+                                children="Cancel"
                                 handleClick={() => setFullName('')}
                             />
                             <Button
@@ -176,7 +176,7 @@ const Editeprofile = () => {
                             <Button
                                 id="bio-cancle-btn"
                                 buttonClass="border rounded-md p-1"
-                                children="Cancle"
+                                children="Cancel"
                                 handleClick={()=> {clearBioInputArea(); setBio({ _html: ` `, text: ` ` })}}
                             />
                             <Button
@@ -203,7 +203,7 @@ const Editeprofile = () => {
                             <Button
                                 id="date-of-birth-cancle-btn"
                                 buttonClass="border rounded-md p-1"
-                                children="Cancle"
+                                children="Cancel"
                                 handleClick={() => setDateOfBirth('')}
                             />
                             <Button
@@ -230,7 +230,7 @@ const Editeprofile = () => {
                             <Button
                                 id="sex-cancle-btn"
                                 buttonClass="border rounded-md p-1"
-                                children="Cancle"
+                                children="Cancel"
                                 handleClick={() => setSex('')}
                             />
                             <Button
@@ -279,7 +279,7 @@ const Editeprofile = () => {
                             <Button
                                 id="country-cancle-btn"
                                 buttonClass="border rounded-md p-1"
-                                children="Cancle"
+                                children="Cancel"
                                 handleClick={() => setCountry('')}
                             />
                             <Button
@@ -306,7 +306,7 @@ const Editeprofile = () => {
                             <Button
                                 id="email-cancle-btn"
                                 buttonClass="border rounded-md p-1"
-                                children="Cancle"
+                                children="Cancel"
                                 handleClick={() => setEmail('')}
                             />
                             <Button
@@ -333,7 +333,7 @@ const Editeprofile = () => {
                             <Button
                                 id="phone-number-cancle-btn"
                                 buttonClass="border rounded-md p-1"
-                                children="Cancle"
+                                children="Cancel"
                                 handleClick={() => setPhoneNumber('')}
                             />
                             <Button
@@ -360,7 +360,7 @@ const Editeprofile = () => {
                             <Button
                                 id="website-link-cancle-btn"
                                 buttonClass="border rounded-md p-1"
-                                children="Cancle"
+                                children="Cancel"
                                 handleClick={() => setWebsite('')}
                             />
                             <Button
@@ -373,10 +373,10 @@ const Editeprofile = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex justify-end items-center">
+                <div id="save-all-btn-wrapper" className="flex justify-end items-center">
                     <Button
                         id="save-all-btn"
-                        buttonClass="text-white border rounded-md transition-color bg-green-800 active:bg-green-400 px-2 py-1"
+                        buttonClass="p-2 text-white rounded-md transition-color bg-green-800 active:bg-green-400 shadow"
                         children="Save all changes"
                         handleClick={handleSaveAllChanges}
                     />
@@ -386,19 +386,19 @@ const Editeprofile = () => {
                     title="Choose Image"
                     Children={
                         <div className="flex justify-between items-center border-y py-4">
-                            <div className="flex-1 flex justify-start border-r pl-2">
+                            <div className="flex-1 flex justify-center border-r">
                                 <Button
                                     id="choose-image-from-library"
                                     buttonClass=""
-                                    children="Form library"
+                                    children="Library"
                                 />
                             </div>
-                            <div className="flex-1 flex justify-end pr-2">
+                            <div className="flex-1 flex justify-center">
                                 <Fileinput
                                     name=""
                                     id="choose-local-image"
                                     type="image"
-                                    placeHolder='From computer'
+                                    placeHolder='Computer'
                                     accept="image/*"
                                     setValue={(value) => {
                                         getMedia({

@@ -521,7 +521,7 @@ const App = () => {
         </div>
       </nav>
     </header>
-    <main className={`container w-full ${isLogin ? 'pb-16' : ''}`}>
+    <main className={`container w-full ${isLogin ? 'pb-20' : ''}`}>
       <Suspense fallback={<Pageloading />}>
         <Routes>
           <Route path="*" element={<Page404 />} />
@@ -556,14 +556,13 @@ const App = () => {
     </main>
     <Footer>
       {isLogin ?
-        <nav id="login-footer-nav" className="container fixed bottom-0 right-0 left-0 bg-inherit py-2 border-t">
+        <nav id="login-footer-nav" className="container fixed bottom-0 right-0 left-0 bg-inherit py-2 border-t z-50">
           <Menu
             arrOfMenu={loginFooterMenu}
             parentClass="w-full flex justify-between items-center"
             childClass="cursor-pointer"
           />
-        </nav>
-        :
+        </nav> :
         <nav id="logout-footer-nav" className="mt-10 space-y-3">
           <Conpanylogo />
           <Menu

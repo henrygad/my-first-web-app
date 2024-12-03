@@ -142,13 +142,13 @@ const Commentbutton = ({
             id="blogpost-comments-dialog"
             currentDialog={blogpostId}
             parentClass=""
-            childClass="container relative flex flex-col w-full h-full bg-white dark:bg-stone-800 dark:text-white py-4"
+            childClass="container relative flex flex-col w-full h-full bg-white dark:bg-stone-800 dark:text-white"
             dialog={toggleCommentDialog}
             setDialog={() => setToggleCommentDialog(' ')}
             children={
                 <>
                     <>
-                        <div className="flex gap-2 items-center py-2">
+                        <div className="flex gap-2 py-4">
                             <Button
                                 id="return-black"
                                 buttonClass=""
@@ -247,5 +247,5 @@ flex-col
 gap-4
 justify-center
 px-4
-py-2
+pb-10
 `

@@ -7,13 +7,14 @@ import { FaCheck } from "react-icons/fa";
 import { BsCopy } from "react-icons/bs";
 import { MdBlock } from "react-icons/md";
 import { TfiFlagAlt2 } from "react-icons/tfi";
+import { endPiont } from "../hooks/utilities";
 
 const Userdotnav = ({ userName }: { userName: string }) => {
     const { loginStatus: { loginUserName } } = useUserIsLogin();
     const isAccountOwner = loginUserName === userName;
 
     const [toggleUserDotNav, setToggleUserDotNav] = useState('');
-    const { copied, handleCopyLink } = useCopyLink('https://localhost:5173/' + userName);
+    const { copied, handleCopyLink } = useCopyLink(endPiont + "/" + userName);
 
     const generalMenu = [
         {
@@ -55,7 +56,7 @@ const Userdotnav = ({ userName }: { userName: string }) => {
     const handleBlockUser = () => { };
 
     const handleReportUser = () => { };
-    
+
 
     return <Dotnav
         id="user-dotnav"

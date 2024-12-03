@@ -86,7 +86,7 @@ const Searchform = () => {
                             onChange={(e) => setGetSearchInput(e.target.value)}
                             onFocus={() => setSearchInputIsFocus(true)}
                         />
-                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-semibold cursor-pointer">
+                        <span className="absolute right-2 top-1/2 -translate-y-1/2 text-sm font-semibold cursor-pointer">
                             {getSearchInput ?
                                 <Button
                                     id="cancel-inputs"

@@ -22,6 +22,8 @@ import { MdBlock, MdDeleteOutline } from "react-icons/md"
 import { TfiFlagAlt2 } from "react-icons/tfi";
 import tw from "tailwind-styled-components";
 import LandLoading from "./LandLoading";
+import { endPiont } from "../hooks/utilities";
+
 
 type Props = {
     blogpost: Blogpostprops

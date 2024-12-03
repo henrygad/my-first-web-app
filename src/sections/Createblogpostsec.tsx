@@ -364,7 +364,7 @@ const Createblogpostsec = ({
                     const firstTenWords = content.text.split(' ', 12);
                     if (firstTenWords.length >= 12) {
                         return;
-                    }; 
+                    };
 
                     setTitleContent(content);
 
@@ -436,20 +436,24 @@ const Createblogpostsec = ({
                 }
             </div>
             {/* img */}
-            <div id='display-image' className='relative'>
-                <Displayimage
-                    id='blogpost-display-img'
-                    imageId={displayImage || ' '}
-                    parentClass='h-[60px] w-[60px]'
-                    imageClass='object-fit rounded cursor-pointer'
-                    placeHolder={addImagePlaceHolder}
-                    onClick={() => setDisplayBlogpostImagePopup(true)}
-                />
-                <span
-                    onClick={() => setDisplayImage(' ')}
-                    className={`${displayImage.trim() ? 'inline' : 'hidden'} absolute top-1 right-1 cursor-pointer`}>
-                    <RxCross2 size={20} />
-                </span>
+            <div id='display-image' className='space-y-1'>
+                <span>Image</span>
+                <div className='relative'>
+                    <Displayimage
+                        id='blogpost-display-img'
+                        imageId={displayImage || ' '}
+                        parentClass='h-[60px] w-[60px]'
+                        imageClass='object-fit rounded cursor-pointer'
+                        placeHolder={addImagePlaceHolder}
+                        onClick={() => setDisplayBlogpostImagePopup(true)}
+                    />
+                    <span
+                        onClick={() => setDisplayImage(' ')}
+                        className={`${displayImage.trim() ? 'inline' : 'hidden'} absolute top-1 right-1 cursor-pointer`}>
+                        <RxCross2 size={20} />
+                    </span>
+
+                </div>
             </div>
         </div>
         <Input
@@ -480,18 +484,18 @@ const Createblogpostsec = ({
             title="Choose Image"
             Children={
                 <div className="flex justify-between items-center border-y py-4">
-                    <div className="flex-1 flex justify-start border-r pl-2">
+                    <div className="flex-1 flex justify-center border-r pl-2">
                         <Button
                             id="choose-image-from-library"
                             buttonClass=""
-                            children="Form library"
+                            children="Library"
                             handleClick={() => setImageGalary({ displayImageGalary: 'blogpost-images-1', selectedImages: [] })}
                         />
                     </div>
-                    <div className="flex-1 flex justify-end pr-2">
+                    <div className="flex-1 flex justify-center">
                         <Fileinput
                             id="computer"
-                            placeHolder='From computer'
+                            placeHolder='Computer'
                             type='image'
                             accept='image/png/svg'
                             setValue={(value) => {
@@ -523,13 +527,13 @@ const Createblogpostsec = ({
         <Dialog
             id="blogpost-image-galary-dialog-1"
             parentClass=""
-            childClass="container relative w-full h-full py-10"
+            childClass="container relative w-full h-full py-4"
             currentDialog="blogpost-images-1"
             dialog={imageGalary.displayImageGalary === 'blogpost-images-1' ? 'blogpost-images-1' : ''}
             setDialog={() => null}
             children={<>
                 <Displayblogpostimagessec selection={true} />
-                <div className='absolute bottom-1 right-1 flex items-center gap-6'>
+                <div className='w-full flex justify-end gap-4 mt-6'>
                     <Button
                         id='add-selected-image-galary-btn'
                         buttonClass='text-white px-2.5 py-1.5 rounded bg-green-800'

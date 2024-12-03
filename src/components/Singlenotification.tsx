@@ -48,11 +48,11 @@ const Singlenotification = ({ notification, displayImage }: Props) => {
 
     const handleNavigateToNotification = (url: string, type: string, notifyFrom: string) => {
         const splitUrl = url.split('/'); //slipt url to get each address
-        const getUrl = "/"+splitUrl.slice(0, 2).join('/'); // get blogpost url
+        const getUrl = "/" + splitUrl.slice(0, 2).join('/'); // get blogpost url
         const parentCommentId = splitUrl[2]; // get parent comment id
         const commentId = splitUrl[splitUrl.length - 1] // get the target comment id
         let commentAddress = splitUrl.slice(2, (splitUrl.length - 1)).join('/')
-        
+
         if (type === 'blogpostComment') {
             commentAddress = ''; // it is a parent comment
 
@@ -132,61 +132,66 @@ const Singlenotification = ({ notification, displayImage }: Props) => {
         if (typeOfNotification === 'blogpostLike') return <SlLike size={22} />
     };
 
-    if(loadingDelete){
+    if (loadingDelete) {
         return <LandLoading loading={loadingDelete} />
     };
 
+
     return <div
         id="comment-Notifications-layout"
-        className={`flex gap-2 items-center p-2 rounded-md ${checked ? ' ' : 'bg-yellow-100 dark:bg-yellow-600 '} cursor-pointer`}
-        onClick={() => handleNavigateToNotification(url, typeOfNotification, notifyFrom)}
-    >
-        <div>
+        className={`w-full p-2 space-y-1 ${checked ? ' ' : 'bg-yellow-100 dark:bg-yellow-600 '} rounded cursor-pointer`}
+        onClick={() => handleNavigateToNotification(url, typeOfNotification, notifyFrom)} >
+        <div className="w-full flex gap-2">
             <Displayicon />
+            <div className="relative flex -space-x-6">
+                {displayImage ?
+                    reStructureIncomingNotifications
+                        .map((item, index) =>
+                            item.notifyFrom.trim() === '' || index > 4 ?
+                                null :
+                                <span className="relative" key={item.notifyFrom} style={{
+                                    zIndex: (10 - index)
+                                }} >
+                                    <UsershortInfor userName={item.notifyFrom} displayName={false} />
+                                </span>
+                        ) :
+                    null
+                }
+            </div>
         </div>
-        <div className="flex -space-x-5 ">
-            {displayImage ?
-                reStructureIncomingNotifications
-                    .map((item, index) =>
-                        item.notifyFrom.trim() === '' || index > 2 ?
-                            null :
-                            <span className="relative" key={item.notifyFrom} style={{zIndex: index}} >
-                                <UsershortInfor userName={item.notifyFrom} displayName={false} />
-                            </span>
-                    ).reverse():
-                null
-            }
-        </div>
-        <div className="text-sm font-text text-wrap truncate">{
-            <>
-                {reStructureIncomingNotifications.map((item, index) =>
-                    index > 2 ?
-                        <span key={item._id}> and +{(reStructureIncomingNotifications.length - 3)}</span> :
-                        (reStructureIncomingNotifications.length - 1) === index &&
-                            (reStructureIncomingNotifications.length - 1) > 0 &&
-                            item.notifyFrom.trim() ?
+        <div className="w-full flex justify-between items-center ">
+            <div className="text-sm font-text text-wrap truncate">{
+                <>
+                    {reStructureIncomingNotifications.map((item, index) =>
+                        index > 2 ?
                             <span key={item._id}>
-                                and <span className="font-bold">{item.notifyFrom.slice(1)}</span>
+                                 ,  + {(reStructureIncomingNotifications.length - 3)} others
                             </span> :
-                            <span key={item._id}>
-                                <span className="font-bold">{item.notifyFrom.slice(1)}</span>
-                                {(reStructureIncomingNotifications.length - 1) >= 0 &&
-                                    item.notifyFrom.trim() ? ' '
-                                    : ' '
-                                }
-                            </span>
-                )}
-                <span className="ml-1" dangerouslySetInnerHTML={{ __html: msg }}></span>
-            </>
-        }</div>
-        <div className="flex-1 flex justify-end">
-            <Button
-                id="delete-notification"
-                buttonClass=""
-                children={<MdDeleteOutline size={22} />}
-                handleClick={(e) => handleDeleteNotification(e)}
-            />
+                            (reStructureIncomingNotifications.length - 1) === index &&
+                                (reStructureIncomingNotifications.length - 1) > 0 &&
+                                item.notifyFrom.trim() ?
+                                <span key={item._id}>
+                                    , and <span className="font-bold">{item.notifyFrom.slice(1)}</span>
+                                </span> :
+                                <span key={item._id}>
+                                    {index > 0 ? ', ' : '' }
+                                    <span className="font-bold">{item.notifyFrom.slice(1)}</span>
+                                </span>
+                    )}
+                    <span className="ml-1" dangerouslySetInnerHTML={{ __html: msg }}></span>
+                </>
+            }</div>
+            <div className="flex-1 flex justify-end gap-4">
+                <Button
+                    id="delete-notification"
+                    buttonClass=""
+                    children={<MdDeleteOutline size={22} />}
+                    handleClick={(e) => handleDeleteNotification(e)}
+                />
+            </div>
         </div>
+
+
     </div>
 };
 

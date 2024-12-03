@@ -163,19 +163,19 @@ const Image = ({
                         title="Choose Image"
                         Children={
                             <div className="flex justify-between items-center border-y py-4">
-                                <div className="flex-1 flex justify-start border-r pl-2">
+                                <div className="flex-1 flex justify-center border-r">
                                     <Button
                                         id="choose-image-from-library"
-                                        children="Form library"
+                                        children="Library"
                                         buttonClass=""
                                         handleClick={() => setImageGalary({ displayImageGalary: 'blogpost-images-2', selectedImages: [] })}
                                     />
                                 </div>
-                                <div className="flex-1 flex justify-end pr-2">
+                                <div className="flex-1 flex justify-center">
                                     <Fileinput
                                         id="computer"
                                         type="image"
-                                        placeHolder='From computer'
+                                        placeHolder='Computer'
                                         accept="image/png, image/gif, image/jpeg"
                                         setValue={(value) => {
                                             getMedia({
@@ -202,13 +202,13 @@ const Image = ({
                     <Dialog
                         id="blogpost-image-galary-dialog-2"
                         parentClass=""
-                        childClass="container relative w-full h-full py-10"
+                        childClass="container relative w-full h-full py-4"
                         currentDialog="blogpost-images-2"
                         dialog={imageGalary.displayImageGalary === 'blogpost-images-2' ? 'blogpost-images-2' : ''}
                         setDialog={() => null}
                         children={<>
                             <Displayblogpostimagessec selection={true} />
-                            <div className='absolute bottom-1 right-1 flex items-center gap-6'>
+                            <div className='w-full flex justify-end gap-4 mt-6'>
                                 <Button
                                     id='add-selected-image-galary-btn'
                                     buttonClass='text-white px-2.5 py-1.5 rounded bg-green-800'

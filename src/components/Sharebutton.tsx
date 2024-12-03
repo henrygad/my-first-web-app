@@ -7,6 +7,7 @@ import { FaCheck, FaWhatsapp } from "react-icons/fa"
 import tw from "tailwind-styled-components";
 import { CiFacebook } from "react-icons/ci";
 import { FaXTwitter } from "react-icons/fa6";
+import { endPiont } from "../hooks/utilities";
 
 
 type Props = {
@@ -26,7 +27,7 @@ const Sharebutton = ({
     notificationUrl, 
     notificationTitle }: Props) => {
 
-    const getBlogpostUrl = `https://localhost:5173/${blogpostUrl}`;
+    const getBlogpostUrl = `${endPiont}/${blogpostUrl}`;
     const shareBtnRef = useRef(null);
     const { loginStatus: { sessionId } } = useUserIsLogin();
     const [shares, setShares] = useState(arrOfShares || []);
@@ -89,7 +90,7 @@ const Sharebutton = ({
             handleClick={() => setToggleShareOptions(true)}
         />
         <Shareiconswrapper className={`${toggleShareOptions ? 'block' : 'hidden'} `}>
-         <div className="flex flex-wrap justify-between gap-4 p-4">
+         <div className="flex flex-wrap justify-evenly gap-4 p-4">
             <Button
                 id="copy-blogpost-link"
                 buttonClass="flex justify-center items-center rounded-full h-16 w-16 border shadow"
@@ -141,7 +142,7 @@ const Sharebutton = ({
                 }
                 handleClick={() => handleShareToX()}
             />
-            </div>
+        </div>
         </Shareiconswrapper>
     </div>
 

@@ -8,9 +8,9 @@ const Singleuser = ({ userName, index = 0 }: { index?: number, userName: string 
   const { loginStatus: { loginUserName } } = useUserIsLogin();
   const isAccountOwner = loginUserName === userName;
 
-  return <Singleuserwrapper className={index % 2 == 0 ? 'border-b' : 'border-none'}>
+  return <Singleuserwrapper>
     <UsershortInfor userName={userName} />
-    <div className='flex  gap-6'>
+    <div className='flex gap-3'>
       {isAccountOwner ?
         null :
         <div>
