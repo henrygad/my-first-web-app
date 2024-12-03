@@ -10,6 +10,7 @@ import { addBlogpostImages } from "../../redux/slices/userImageSlices";
 import { useAppDispatch } from "../../redux/slices";
 import { Displayblogpostimagessec } from "../../sections";
 import { RxCross2 } from "react-icons/rx";
+import { endPiont } from "../../hooks/utilities";
 
 type Props = {
     onInputAreaChange: () => void
@@ -32,7 +33,7 @@ const Image = ({
     const [imageAlt, setImageAlt] = useState('');
 
     const getMedia = useGetLocalMedia();
-    const { createImage, loading} = useCreateImage();
+    const { createImage, loading } = useCreateImage();
     const appDispatch = useAppDispatch();
 
     const { imageGalary, setImageGalary } = useImageGalary();
@@ -153,7 +154,7 @@ const Image = ({
                             Close
                         </button>
                         <button className='px-2 py-[.2rem] bg-green-800 text-white rounded shadow-sm'
-                            onClick={() => handleInsertImage(inputUrl || 'https://localhost:3000/api/image/' + imageFileUrl, imageAlt, imageHeight + 'px', imageWight + 'px', ['h-[' + imageHeight + 'px]', 'w-[' + imageWight + 'px]', imagePosition, 'inline'])} >
+                            onClick={() => handleInsertImage(inputUrl || endPiont + '/api/image/' + imageFileUrl, imageAlt, imageHeight + 'px', imageWight + 'px', ['h-[' + imageHeight + 'px]', 'w-[' + imageWight + 'px]', imagePosition, 'inline'])} >
                             Add image
                         </button>
                     </div>
@@ -233,7 +234,7 @@ const Image = ({
                 </div>
             } />
 
-          <Screenloading  loading={loading}/>  
+        <Screenloading loading={loading} />
     </div>
 };
 
