@@ -164,27 +164,33 @@ const Profilesec = (
             (profileData) &&
               Object.keys(profileData).length ?
               <div id='profile-data-display-wrapper'>
-                <div id='profile-datails' className='flex justify-between items-star'>
+                <div id='profile-datails' className='flex justify-between items-start'>
                   {/* display profile detail */}
                   <div className='space-y-1'>
                     {/* profile data */}
-                    <Link to={isAccountOwner ? '/editprofile' : ''} className='' >
-                      <Displayimage
-                        placeHolder={avaterPlaceholder}
-                        id={'avater'}
-                        imageId={profileData?.displayImage}
-                        parentClass='h-14 w-14'
-                        imageClass='object-contain rounded-full'
-                        onClick={() => ''}
-                      />
-                      <div className='flex flex-col font-secondary '>
-                        <span id='name' className='text-base font-semibold' >{profileData?.name}</span>
-                        <span id='userName' className='text-sm opacity-50 ' >{profileData?.userName}</span>
+                    <div>
+                      <Link to={isAccountOwner ? '/editprofile' : ''} className='block w-14'>
+                        <Displayimage
+                          placeHolder={avaterPlaceholder}
+                          id={'avater'}
+                          imageId={profileData?.displayImage}
+                          parentClass='h-14 w-14'
+                          imageClass='object-contain rounded-full'
+                          onClick={() => ''}
+                        />
+                      </Link>
+                      <div>
+                        <span id='name' className='block text-base font-semibold' >
+                          {profileData?.name}
+                        </span>
+                        <span id='userName' className='text-sm opacity-50 '>
+                          {profileData?.userName}
+                        </span>
                       </div>
-                    </Link>
-                    <div id='bio' className='font-text'>                      
+                    </div>
+                    <div id='bio' className='font-text'>
                       <span className='block md:text-base text-wrap max-w-[480px]'
-                      dangerouslySetInnerHTML={sanitizeHTML(profileData?.bio || '')}></span>
+                        dangerouslySetInnerHTML={sanitizeHTML(profileData?.bio || '')}></span>
                     </div>
                     <div id='sex-dateOfBirth' className='flex flex-col gap-1 text-sm'>
                       <span className=' capitalize' >{profileData?.sex || ''}</span>
@@ -200,7 +206,7 @@ const Profilesec = (
                       <span id='country'>{profileData?.country}</span>
                     </div>
                   </div>
-                  <div className='flex flex-col items-end gap-8 relative h-full -mt-5'>
+                  <div className='flex-1 flex flex-col items-end gap-8 relative h-full'>
                     {/* user intertractions */}
                     <Userdotnav
                       userName={profileData?.userName}
@@ -241,7 +247,7 @@ const Profilesec = (
                   <div id='profile-tab-menus' className='sticky top-0 z-50'>
                     <Menu
                       arrOfMenu={profileAtivitiesTabs.map(item => item.menu)}
-                      parentClass="flex justify-between gap-4 border px-2 py-1 shadow-sm"
+                      parentClass="flex justify-between gap-4 border bg-white dark:bg-stone-800 dark:text-white px-2 py-1 shadow-sm"
                       childClass=""
                     />
                   </div>
@@ -299,7 +305,7 @@ const Profilesec = (
               <Page404 />
           }
         </> :
-       <Profilepageplaceholder />
+        <Profilepageplaceholder />
     }
   </div>
 };

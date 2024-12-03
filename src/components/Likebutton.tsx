@@ -178,7 +178,7 @@ const Likebutton = ({
                                     </div>
                                 )}
                             </> :
-                            <div>be the first to like</div>
+                            null
                         }
                     </div>
                 </>

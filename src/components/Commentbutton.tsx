@@ -54,6 +54,7 @@ const Commentbutton = ({
     const notify = useNotification();
 
     const [toggleCommentDialog, setToggleCommentDialog] = useState(' ');
+    const [toggleParentTextEditor, setToggleParentTextEditor] = useState(true);
 
     const clearCommentInputArea = () => {
         const contentEditAbleELe = document.querySelectorAll("[contenteditable]");  //Get all contenteditable div on page
@@ -172,6 +173,8 @@ const Commentbutton = ({
                                                     comment={item}
                                                     setDisplayParentComment={setDisplayParentComment}
                                                     autoOpenTargetComment={autoOpenTargetComment}
+                                                    toggleParentTextEditor={toggleParentTextEditor}
+                                                    setToggleParentTextEditor={setToggleParentTextEditor}
                                                 />
                                             )
                                         }
@@ -205,8 +208,9 @@ const Commentbutton = ({
                             </div>
                         }
                     </>
-                    {isLogin ? 
-                    <Commentinputareawrapper id="blogpost-comment-textarea-wrapper">
+                    {isLogin  &&
+                     toggleParentTextEditor? 
+                    <Commenttexteditorwrapper id="blogpost-comment-textarea-wrapper">
                         <Trythistexteditor
                             id='blogpost-comment-text-editor'
                             placeHolder="Comment..."
@@ -226,7 +230,7 @@ const Commentbutton = ({
                                 handleClick={() => handleAddCommentToBlogpost()}
                             />
                         </div>
-                    </Commentinputareawrapper> :
+                    </Commenttexteditorwrapper> :
                         null
                     }
                 </>
@@ -237,7 +241,7 @@ const Commentbutton = ({
 
 export default Commentbutton;
 
-const Commentinputareawrapper = tw.div` 
+const Commenttexteditorwrapper = tw.div` 
 flex 
 flex-col
 gap-4

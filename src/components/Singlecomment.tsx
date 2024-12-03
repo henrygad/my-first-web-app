@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCopyLink, useDeleteData, useFetchData, useNotification, usePostData, useSanitize, useUserIsLogin } from "../hooks";
 import Dotnav from "./Dotnav";
 import UsershortInfor from "./UsershortInfor";
@@ -23,6 +23,8 @@ type Props = {
   index?: number
   type?: string
   setDisplayParentComment?: React.Dispatch<React.SetStateAction<Commentprops[]>>
+  toggleParentTextEditor: boolean
+  setToggleParentTextEditor: React.Dispatch<React.SetStateAction<boolean>>
 
   autoOpenTargetComment: { autoOpen: boolean, commentId: string, commentAddress: string, targetLike: { autoOpen: boolean, commentId: string, like: string } }
 };
@@ -31,6 +33,8 @@ const Singlecomment = ({
   type = 'text',
   comment,
   index,
+  toggleParentTextEditor,
+  setToggleParentTextEditor,
   setDisplayParentComment = () => null,
 
   autoOpenTargetComment = { autoOpen: false, commentId: '', commentAddress: '', targetLike: { autoOpen: false, commentId: '', like: '' } },
@@ -50,7 +54,7 @@ const Singlecomment = ({
   const [toggleSideMenu, setToggleSideMenu] = useState('');
   const { copied, handleCopyLink } = useCopyLink(parentUrl + '/' + _id);
 
-  const [toggleDisplayCommentInput, setToggleDisplayCommentInput] = useState(false);
+  const [toggleChildTextEditor, setToggleChildTextEditor] = useState(' ');
   const [targetComment, setTargetComment] = useState('');
 
   const { postData: postReply, loading: loadingReplyComment } = usePostData();
@@ -162,7 +166,7 @@ const Singlecomment = ({
               return item;
             };
           }));
-          setToggleDisplayCommentInput(false);
+          setToggleChildTextEditor('');
           setDisplayCommentChildren((pre) => pre ? [data, ...pre] : pre);
           appDispatch(addComment(data));
           appDispatch(increaseTotalNumberOfUserComments(1));
@@ -237,6 +241,7 @@ const Singlecomment = ({
     return <LandLoading loading={deleteCommentLoading} />
   };
 
+
   return <Singcommentwrapper id={'blogpost-comment-' + _id} className={_id === targetComment ? 'bg-yellow-100 dark:bg-yellow-600 ' : ' '}>
     <div className="relative">
       <Dotnav
@@ -247,7 +252,7 @@ const Singlecomment = ({
         children={
           <Menu
             id="MenuForComment"
-            parentClass='absolute top-0 -right-2 min-w-[140px] max-w-[320px] backdrop-blur-sm p-3 rounded shadow-sm z-20 cursor-pointer space-y-4'
+            parentClass='backdrop-blur-sm p-3 rounded shadow-sm z-20 cursor-pointer space-y-4'
             childClass=""
             arrOfMenu={!isAccountOwner ?
               intaracttionMenu
@@ -269,7 +274,10 @@ const Singlecomment = ({
         id="reply-comment-btn"
         buttonClass="flex items-center gap-2"
         children={<> <MdOutlineChatBubbleOutline size={20} /> {children.length || 0}</>}
-        handleClick={() => setToggleDisplayCommentInput(!toggleDisplayCommentInput)}
+        handleClick={() => {
+          setToggleChildTextEditor(toggleChildTextEditor.trim() === _id ? '' : _id);
+          setToggleParentTextEditor(toggleChildTextEditor.trim() ? true : false);
+        }}
       />
       <Likebutton
         parentId={_id}
@@ -287,7 +295,7 @@ const Singlecomment = ({
       />
     </div>
     {isLogin &&
-      toggleDisplayCommentInput ?
+      toggleChildTextEditor.trim() === _id ?
       <div id="comment-text-area-wrapper" className="flex flex-col gap-4 justify-center p-2">
         <Trythistexteditor
           id='comment-text-editor'
@@ -297,7 +305,7 @@ const Singlecomment = ({
           createNewText={{ IsNew: true }}
           textEditorWrapperClassName="p-2"
           useTextEditors={{ useInlineStyling: true }}
-          inputTextAreaFocus={toggleDisplayCommentInput}
+          inputTextAreaFocus={toggleChildTextEditor.trim() ? true : false}
           setGetContent={setChildGetCommentContent}
         />
         <div id="comment-btn" className="flex justify-center">
@@ -324,6 +332,8 @@ const Singlecomment = ({
                 index={index}
                 type="text"
                 comment={item}
+                toggleParentTextEditor={toggleParentTextEditor}
+                setToggleParentTextEditor={setToggleParentTextEditor}
 
                 autoOpenTargetComment={autoOpenTargetComment}
               />

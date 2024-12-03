@@ -118,8 +118,8 @@ const SingleImage = ({ image: { _id, uploader, fieldname }, index, placeHolder =
             id={'advater-nav'}
             children={
                 <Menu
-                    id='avaterMenus'
-                    parentClass="absolute top-0 -right-2 min-w-[100px] max-w-[320px] backdrop-blur-sm p-3 rounded shadow-sm z-20 cursor-pointer space-y-4"
+                    id='avater-menus'
+                    parentClass="backdrop-blur-sm p-3 rounded shadow-sm z-20 cursor-pointer space-y-4"
                     childClass=''
                     arrOfMenu={!isAccountOwner ?
                         intaracttionMenu :

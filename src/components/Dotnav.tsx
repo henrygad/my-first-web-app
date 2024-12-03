@@ -53,8 +53,8 @@ const Dotnav = ({ setToggleSideMenu, toggleSideMenu, name, id, children }: Props
             </>}
             handleClick={() => setToggleSideMenu(toggleSideMenu.trim() ? '' : name)}
         />
-        <div className={toggleDialog.parent ? 'block absolute top-0 right-0 left-0' : 'hidden'}>
-            <Dotswrapper className={`${toggleDialog.child ? 'translate-x-0 ' : ' translate-x-[20%] '}`} >
+        <div className={toggleDialog.parent ? 'block absolute top-0 right-0 overflow-hidden' : 'hidden'}>
+            <Dotswrapper className={` ${toggleDialog.child ? 'translate-x-0 ' : 'translate-x-[100%] '}`} >
                 {children}
             </Dotswrapper>
         </div>
@@ -64,6 +64,9 @@ const Dotnav = ({ setToggleSideMenu, toggleSideMenu, name, id, children }: Props
 export default Dotnav;
 
 const Dotswrapper = tw.div`
+relative
+w-full
+min-h-full
 transition-transform
 duration-500
 `

@@ -59,29 +59,25 @@ const Searchform = () => {
     };
 
     return <div id="search-form-wrapper" className="relative flex justify-center w-full">
-        <div className="absolute -top-9 -translate-x-1/2  sm:left-1/2 z-30">
+        <div className="absolute -top-9 -translate-x-1/2 sm:left-1/2 z-30">
             <Searchformwrappper
                 id="search-form-wrapper"
-                className={searchInputIsFocus ?
-                    'absolute top-0 left-1/2 -translate-x-1/2 min-w-[280px] sm:min-w-[360px] md:min-w-[480px] xl:min-w-[768px] border-2 px-6 rounded-xl' :
-                    ''}
+                className={searchInputIsFocus ? 'absolute top-0 left-1/2 -translate-x-1/2 w-full min-w-[300px] sm:min-w-[360px] md:min-w-[480px] xl:min-w-[768px] px-4 rounded-xl shadow' :''}
                 ref={formWrapperRef}>
                 {windowSize.width >= 768 ||
                     searchInputIsFocus ?
                     <form action="" onSubmit={handleSearchForm}
-                        className="relative w-full" >
+                        className="relative w-full mt-2" >
                         <Button
                             id="search-icon"
                             buttonClass="absolute left-2 top-1/2 -translate-y-1/2"
-                            children={<RiSearch2Line className="text-gray-400" size={searchInputIsFocus ? 22 : 19} />}
+                            children={<RiSearch2Line className="text-slate-400" size={searchInputIsFocus ? 22 : 19} />}
                             handleClick={() => { setSearchInputIsFocus(true) }}
                         />
                         <Searchinput
                             ref={inputRef}
                             autoComplete="off"
-                            className={searchInputIsFocus ?
-                                'w-full py-3 border-t-0' :
-                                ''}
+                            className={searchInputIsFocus ? 'w-full py-3' :''}
                             type="text"
                             id="search-input"
                             name="search"
@@ -95,13 +91,13 @@ const Searchform = () => {
                                 <Button
                                     id="cancel-inputs"
                                     buttonClass=""
-                                    children={<MdOutlineCancel className="text-gray-400" size={20} />}
+                                    children={<MdOutlineCancel className="text-slate-400" size={20} />}
                                     handleClick={() => setGetSearchInput('')}
                                 /> :
                                 <Button
                                     id="search-historys"
                                     buttonClass=""
-                                    children={<FaHistory className="text-gray-400" size={18} />}
+                                    children={<FaHistory className="text-slate-400" size={18} />}
                                     handleClick={() => { setSearchInputIsFocus(true); setSearchHistoryCurrentTab('searchHistorySetting') }}
                                 />
                             }
@@ -121,7 +117,7 @@ const Searchform = () => {
                 }
                 <Tab
                     id="search-history-tabs"
-                    tabClass={`w-full ${searchInputIsFocus ? 'block' : 'hidden'} px-4 pt-4 pb-2 space-y-3`}
+                    tabClass={`w-full ${searchInputIsFocus ? 'block' : 'hidden'} py-4 space-y-3`}
                     currentTab={searchHistoryCurrentTab}
                     arrOfTab={[
                         {
@@ -225,13 +221,14 @@ const Searchform = () => {
 export default Searchform;
 
 const Searchinput = tw.input`
-border-2 
 py-2
 px-8
-rounded-full 
-outline-green-200 
-outline-2
+rounded-xl
 bg-transparent
+border-2
+border-slate-300
+outline-2
+outline-green-200 
 `
 const Searchformwrappper = tw.div`
 text-sm
@@ -241,5 +238,5 @@ dark:text-white
 z-[100]
 transition-transform 
 duration-200
-space-y-0.5 
+space-y-0.5
 `

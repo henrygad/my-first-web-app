@@ -32,6 +32,7 @@ const Feed = ({ streamedFeeds, setStreamedFeeds }: { streamedFeeds: Blogpostprop
     const handleRefreshFeeds = async () => {
         if (!getProfileData ||
             !getProfileData.timeline) return;
+        setStreamedFeeds(null);
 
         fetchRefreshFeedData(`/api/blogposts/timeline/${getProfileData.timeline.join('&')}?status=published&skip=0&limit=${timelineFeeds?.length}`)
             .then((res) => {
@@ -55,7 +56,6 @@ const Feed = ({ streamedFeeds, setStreamedFeeds }: { streamedFeeds: Blogpostprop
             .then((res) => {
                 const { data } = res;
                 if (!data) return;
-                setStreamedFeeds(null);
                 appDispatch(fetchTimelineFeeds({
                     data: [...timelineFeeds, ...data],
                     loading: false,

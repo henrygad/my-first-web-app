@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { endPiont } from './utilities';
 
 const usePatchData = () => {
     const [loading, setLoading] = useState(false);
@@ -11,9 +12,9 @@ const usePatchData = () => {
             setLoading(true);
             setError('');
 
-            const response = await axios.patch('https://blogsupserver.onrender.com' + url, body,
+            const response = await axios.patch(endPiont + url, body,
                 {
-                    baseURL: 'https://blogsupserver.onrender.com',
+                    baseURL: endPiont,
                      withCredentials: true
                  }
             );

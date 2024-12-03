@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { endPiont } from '../hooks/utilities';
 
 type Props = {
     id: string
@@ -24,8 +25,8 @@ const Displayimage = ({
     return <div className={`relative ${parentClass}`}>
         <img
             id={id}
-            src={(imageId?.trim() ? 'https://blogsupserver.onrender.com/api/image/' + imageId : imageUrl?.trim() ? imageUrl : ' ')}
-            className={` ${imageLoading ? "border  bg-slate-200 animate-pulse" : ""}  ${imageClass}`}
+            src={(imageId?.trim() ? endPiont + '/api/image/' + imageId : imageUrl?.trim() ? imageUrl : ' ')}
+            className={` ${imageLoading ? "border bg-slate-100 animate-pulse" : ""}  ${imageClass}`}
             style={{ width: '100%', height: '100%' }}
             onError={(e) => {
                 if (e.target instanceof HTMLImageElement) {

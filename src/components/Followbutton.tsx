@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import Button from "./Button";
-import { useNotification, usePatchData } from "../hooks";
+import { useNotification, usePatchData, useUserIsLogin } from "../hooks";
 import { useAppDispatch, useAppSelector } from "../redux/slices";
 import { follow, unFollow } from "../redux/slices/userProfileSlices";
 
 
 const Followbutton = ({ userNameToFollow }: { userNameToFollow: string }) => { 
+    const {loginStatus: {isLogin}} = useUserIsLogin();
+
     const { userProfile: {
         data: profileData, 
         loading: loadingUserProfileData
@@ -17,35 +19,39 @@ const Followbutton = ({ userNameToFollow }: { userNameToFollow: string }) => {
 
     const notify = useNotification();
 
-    const handleFollow = async (userNameToFollow: string) => {
-        if (followed) return;
-        setFollowed(true);
-
-        const body = null;
-        const response = await patchData<{ followed: string }>('/api/follow/' + userNameToFollow, body);
-        const { data, ok } = response;
-
-        if (data) {
-            appDispatch(follow({userName: data.followed}));
+    const handleFollow = async (userNameToFollow: string) => { 
+        if (followed && isLogin) {
             setFollowed(true);
-            await handleNotification(userNameToFollow, 'followed you, you can follow them back', 'follow');
+
+            const body = null;
+            const response = await patchData<{ followed: string }>('/api/follow/' + userNameToFollow, body);
+            const { data, ok } = response;
+    
+            if (data) {
+                appDispatch(follow({userName: data.followed}));
+                setFollowed(true);
+                await handleNotification(userNameToFollow, 'followed you, you can follow them back', 'follow');
+            };
         };
+       
     };
 
     const handleUnfollow = async (userNameToFollow: string) => {
-        if (!followed) return;
-        setFollowed(false);
-        
-        const body = null;
-        const response = await patchData<{ unFollowed: string }>('/api/unfollow/' + userNameToFollow, body);
-        const { data} = response;
-
-        if (data) {
-            appDispatch(unFollow({userName: data.unFollowed}));
+        if (followed && isLogin) {
             setFollowed(false);
-
-            await handleNotification(userNameToFollow, 'unfollowed you, you can unfollow them back', 'unfollow');
+        
+            const body = null;
+            const response = await patchData<{ unFollowed: string }>('/api/unfollow/' + userNameToFollow, body);
+            const { data} = response;
+    
+            if (data) {
+                appDispatch(unFollow({userName: data.unFollowed}));
+                setFollowed(false);
+    
+                await handleNotification(userNameToFollow, 'unfollowed you, you can unfollow them back', 'unfollow');
+            };
         };
+        
     };
 
     const handleNotification = async (userNameToNotify: string, msg: string, type: string) => {

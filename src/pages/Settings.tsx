@@ -15,8 +15,8 @@ const Settings = () => {
             content: <Link to="/editprofile">
                 <Button
                     id="edit-profile-btn"
-                    buttonClass="flex items-center gap-2 font-secondary text-xl "
-                    children={<><CgProfile size={24} /> Edit Profile</>}
+                    buttonClass="flex items-center gap-2 font-secondary text-base "
+                    children={<><CgProfile size={20} /> Edit Profile</>}
                 />
             </Link>
         },
@@ -24,8 +24,8 @@ const Settings = () => {
             name: 'security',
             content:<Button
                     id="security-btn"
-                    buttonClass="flex items-center gap-2 font-secondary text-xl "
-                    children={<><GrShieldSecurity size={24} /> Security</>}
+                    buttonClass="flex items-center gap-2 font-secondary text-base "
+                    children={<><GrShieldSecurity size={20} /> Security</>}
                 />
         },
         {
@@ -40,23 +40,23 @@ const Settings = () => {
             name: 'FAQ',            
             content: <Button
                id="faq-btn"
-               buttonClass="flex items-center gap-2 font-secondary text-xl "
-               children={<><FaQuestion size={22} /> FQA</>}
+               buttonClass="flex items-center gap-2 font-secondary text-base "
+               children={<><FaQuestion size={18} /> FQA</>}
            />
         },
         {
             name: 'help',
             content: <Button
             id="help-btn"
-            buttonClass="flex items-center gap-2 font-secondary text-xl "
-            children={<><SlEarphonesAlt size={20} /> Help</>}/>
+            buttonClass="flex items-center gap-2 font-secondary text-base "
+            children={<><SlEarphonesAlt size={18} /> Help</>}/>
         },
         {
             name: 'privacy policy',
             content: <Button
             id="privacy-policy"
-            buttonClass="flex items-center gap-2 font-secondary text-xl "
-            children={<><MdOutlinePrivacyTip  size={24} /> Privacy Policy</>}/>
+            buttonClass="flex items-center gap-2 font-secondary text-base "
+            children={<><MdOutlinePrivacyTip  size={20} /> Privacy Policy</>}/>
         },
     ];
 

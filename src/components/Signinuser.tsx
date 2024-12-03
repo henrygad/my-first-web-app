@@ -112,7 +112,7 @@ const Signinuser = ({ switchPages, closePages }: Props) => {
 };
 
 const Inputwrapper = tw.div`
-p-8
+p-4
 border 
 shadow-md
 space-y-6

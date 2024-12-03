@@ -63,7 +63,7 @@ const Userdotnav = ({ userName }: { userName: string }) => {
         children={
             <Menu
                 id=""
-                parentClass="absolute top-0 -right-2 min-w-[140px] max-w-[320px] backdrop-blur-sm p-3 rounded shadow-sm z-20 cursor-pointer space-y-4"
+                parentClass="backdrop-blur-sm p-3 rounded shadow-sm z-20 cursor-pointer space-y-4"
                 childClass=""
                 arrOfMenu={isAccountOwner ? generalMenu : intaracttionMenu}
             />

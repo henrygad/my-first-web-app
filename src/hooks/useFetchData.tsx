@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { endPiont } from './utilities';
 
 const useFetchData = <T,>(url: string | null = '', dependences: any[] = []) => {
     const [data, setData] = useState<T | null>(null);
@@ -11,9 +12,9 @@ const useFetchData = <T,>(url: string | null = '', dependences: any[] = []) => {
             setLoading(true);
             setError('');
 
-            const response = await axios.get('https://blogsupserver.onrender.com' + url,
+            const response = await axios.get(endPiont + url,
                 {
-                   baseURL: 'https://blogsupserver.onrender.com',
+                   baseURL: endPiont,
                     withCredentials: true
                 }
             );

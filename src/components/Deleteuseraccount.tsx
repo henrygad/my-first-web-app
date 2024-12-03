@@ -34,8 +34,8 @@ const Deleteuseraccount = () => {
   return <div>
     <Button
       id="delete-user-account-request-btn"
-      buttonClass="flex items-center gap-2 font-secondary text-xl"
-      children={<><RiDeleteBinLine size={22} />  Delete Account</>}
+      buttonClass="flex items-center gap-2 font-secondary text-base"
+      children={<><RiDeleteBinLine size={20} />  Delete Account</>}
       handleClick={() => setDeleteRequest(true)}
     />
     <div id="delete-request-pop-up"

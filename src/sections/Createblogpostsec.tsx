@@ -340,7 +340,7 @@ const Createblogpostsec = ({
             });
     };
 
-    return <div>
+    return <div className='space-y-4'>
         {/* blog post menus */}
         <Menu
             id=""
@@ -353,8 +353,8 @@ const Createblogpostsec = ({
             id='blogpost-body-text-editor'
             placeHolder="Start typing..."
             InputWrapperClassName="w-full max-w-full border-2 border-t-0 rounded-b-md p-3"
-            InputClassName="w-full max-w-full min-h-[480px]"
-            textEditorWrapperClassName="sticky top-0 rounded-t-md border-2 p-3 shadow-inner z-50"
+            InputClassName="w-full max-w-full min-h-[480px] overflow-auto"
+            textEditorWrapperClassName="sticky top-0.5 rounded-t-md border-2 p-3 shadow-inner z-50"
             createNewText={{ IsNew: false, content: bodyContent }}
             useTextEditors={true}
             inputTextAreaFocus={true}

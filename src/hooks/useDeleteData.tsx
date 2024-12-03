@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react'
+import { endPiont } from './utilities';
 
 const useDeleteData = () => {
     const [loading, setLoading] = useState(false);
@@ -10,9 +11,9 @@ const useDeleteData = () => {
             setLoading(true);
             setError('');
 
-            const response = await axios.delete('https://blogsupserver.onrender.com' + url,
+            const response = await axios.delete(endPiont + url,
                 {
-                    baseURL: 'https://blogsupserver.onrender.com',
+                    baseURL: endPiont,
                      withCredentials: true
                  }
             );

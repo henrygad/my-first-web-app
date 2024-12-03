@@ -31,41 +31,28 @@ const Dialog = ({
     const handleDialogmoves = () => {
         if (dialog.trim().toLocaleLowerCase() === currentDialog.trim().toLocaleLowerCase()) {
             setToggleDialog({ parent: true, child: false });
+
+            document.body.classList.add('overflow-hidden');
+
             setTimeout(() => {
                 setToggleDialog({ parent: true, child: true });
             }, 200);
         } else {
             setToggleDialog(pre => pre ? { ...pre, child: false } : pre);
             setTimeout(() => {
+                document.body.classList.remove('overflow-hidden');
                 setToggleDialog({ parent: false, child: false });
             }, 750);
         };
     };
 
-    const preventDefaultScroll = (e: WheelEvent | TouchEvent) => {
-        if (dialog.trim().toLocaleLowerCase() === currentDialog.trim().toLocaleLowerCase()) {
-            e.preventDefault();
-        };
-    };
-
     useEffect(() => {
         handleDialogmoves();
-
-        window.addEventListener('wheel', preventDefaultScroll, { passive: false });
-        window.addEventListener('touchmove', preventDefaultScroll, { passive: false });
-
-        return () => {
-            window.removeEventListener('wheel', preventDefaultScroll);
-            window.removeEventListener('touchmove', preventDefaultScroll);
-        };
-
     },
         [
             dialog.trim().toLocaleLowerCase(),
             currentDialog.trim().toLocaleLowerCase()
         ]);
-
-
 
 
     return <Dialogwraaper
@@ -91,6 +78,8 @@ export default Dialog;
 const Dialogchildrenwrapper = tw.div`
 transition-transform
 duration-700
+max-h-full
+overflow-y-auto
 `
 
 const Dialogwraaper = tw.div`
@@ -99,5 +88,6 @@ top-0
 bottom-0 
 right-0 
 left-0
+min-h-screen
 z-50
 `

@@ -27,8 +27,8 @@ const Signoutuser = () => {
   
     return <Button
         id='logout-btn'
-        buttonClass="flex items-center gap-2 font-secondary text-xl text-red-600"
-        children={<><RiLogoutBoxLine size={23} /> Logout</>}
+        buttonClass="flex items-center gap-2 font-secondary text-base text-red-600"
+        children={<><RiLogoutBoxLine size={20} /> Logout</>}
         handleClick={handleLogOut}
     />
 };

@@ -181,9 +181,11 @@ const Signupuser = ({ switchPages, closePages }: Props) => {
                 className='space-y-12'
                 onSubmit={handleVerifyEmail}
             >
-                <div></div>
+                <div id='space'></div>
                 <Inputwrapper>
-                    <span className='block text-2xl font-primary text-center capitalize'>Email Verification</span>
+                    <span className='block text-xl font-primary text-center capitalize'>
+                        Verify your email
+                    </span>
                     <Input
                         id='verify-email-input'
                         type='email'
@@ -209,13 +211,12 @@ const Signupuser = ({ switchPages, closePages }: Props) => {
                                 errorMsg: errorVerifyEmail.trim(),
                             }}
                         />
-                        <span className='text-sm'>OTP Token Has Been Sent to Your Email: {emailToVerify}</span>
+                        <span className='text-sm font-text'>OTP Token Has Been Sent to this  Email: {emailToVerify}</span>
                     </span>
                     <Button
                         id='signin-user-btn'
                         buttonClass='w-full font-bold text-white bg-green-800 rounded-md p-3 shadow-md'
                         children={loadingVerifyEmail ? "loading..." : "Sign up"}
-
                     />
                 </Inputwrapper>
             </form>

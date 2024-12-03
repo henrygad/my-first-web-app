@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { endPiont } from './utilities';
 
 
 const useEventSource = <T,>(url: string, dependence: any[] = []) => {
@@ -11,7 +12,7 @@ const useEventSource = <T,>(url: string, dependence: any[] = []) => {
         setLoading(true);
         setError('');
 
-        const eventSource = new EventSource('https://blogsupserver.onrender.com' + url);
+        const eventSource = new EventSource(endPiont + url);
         
         eventSource.onmessage = (event) => {
             const data: T = JSON.parse(event.data)

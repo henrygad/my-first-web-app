@@ -587,7 +587,7 @@ const App = () => {
                 />
                 <Tab
                   id="authentication-tab"
-                  tabClass="pt-20"
+                  tabClass="py-4"
                   currentTab={authenticationCurrentTabOn}
                   arrOfTab={[
                     {

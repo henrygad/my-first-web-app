@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { endPiont } from './utilities';
+
 
 const usePostData = () => {
     const [loading, setLoading] = useState(false);
@@ -13,9 +15,9 @@ const usePostData = () => {
             setLoading(true);
             setError('');
         
-            const res = await axios.post('https://blogsupserver.onrender.com' + url, body, 
+            const res = await axios.post(endPiont + url, body, 
                 {
-                   baseURL: 'https://blogsupserver.onrender.com',
+                   baseURL: endPiont,
                     withCredentials: true
                 }
             );

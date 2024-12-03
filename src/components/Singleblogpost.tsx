@@ -180,55 +180,52 @@ const Singleblogpost = ({
                 if (status === 'published') appDispatch(decreaseTotalNumberOfPublishedBlogposts(1));
             });
     };
-    
+
 
     if (loadingDeleteBlogpost || loadingUnpublished) {
         return <LandLoading loading={(loadingDeleteBlogpost || loadingUnpublished)} />
     };
 
     return <Article ref={blogpostRef}
-        className={` ${type === 'text' ? 'max-w-[480px] xl:min-w-[768px] xl:max-w-[768px]' : ' '} 
+        className={`${type === 'text' ? 'max-w-[480px] xl:min-w-[768px] xl:max-w-[768px]' : ' '} 
                 ${(index % 2 !== 0) ? "border-y" : ''}`}>
-        <div className="relative w-full">
-            <Dotnav
-                id="blogpost-nav"
-                setToggleSideMenu={setToggleSideMenu}
-                toggleSideMenu={toggleSideMenu}
-                name={_id}
-                children={
-                    <Menu
-                        id="MenuForBlogpost"
-                        parentClass='absolute top-0 -right-2 min-w-[140px] max-w-[320px] backdrop-blur-sm p-3 rounded shadow-sm z-20 cursor-pointer space-y-4'
-                        childClass=""
-                        arrOfMenu={!isAccountOwner ?
-                            intaracttionMenu
-                            : accountOnwerMenuForBlogpost
-                        }
-                    />
-                }
-            />
-        </div>
-        <div className="flex items-center">
-            <UsershortInfor
-                userName={authorUserName}
-            />
-        </div>
+
+        <Dotnav
+            id="blogpost-nav"
+            setToggleSideMenu={setToggleSideMenu}
+            toggleSideMenu={toggleSideMenu}
+            name={_id}
+            children={
+                <Menu
+                    id="MenuForBlogpost"
+                    parentClass='backdrop-blur-sm p-3 rounded-sm shadow-sm z-20 cursor-pointer space-y-4'
+                    childClass=""
+                    arrOfMenu={!isAccountOwner ?
+                        intaracttionMenu
+                        : accountOnwerMenuForBlogpost
+                    }
+                />
+            }
+        />
+        <UsershortInfor
+            userName={authorUserName}
+        />
+        <span id="blopost-infor" className="block font-secondary text-sm space-y-2">
+            <span id="date" >
+                Last upated<span> {handleReadableDate(updatedAt, {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true,
+                })}</span>
+            </span>
+            <span id="catigory" className="flex gap-2 text-start w-full font-semibold">
+                {(catigory || '').split(',').map((item =>
+                    <span key={item}>.{item}</span>
+                ))}
+            </span>
+        </span>
         <span id="post-body" onClick={() => handleViewBlogpost('/' + url)}
             className={`block w-full space-y-2 ${type === 'text' ? 'cursor-pointer' : "cursor-text"}`}>
-            <span id="blopost-infor" className="block font-secondary text-sm space-y-2">
-                <span id="date" >
-                    Last upated<span> {handleReadableDate(updatedAt, {
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        hour12: true,
-                    })}</span>
-                </span>
-                <span id="catigory" className="flex gap-2 text-start w-full font-semibold">
-                    {(catigory || '').split(',').map((item =>
-                        <span key={item}>.{item}</span>
-                    ))}
-                </span>
-            </span>
             {type &&
                 type === 'text' ?
                 <span id="text" className="block text-start w-full text-wrap py-2" >
@@ -308,6 +305,7 @@ const Singleblogpost = ({
 export default Singleblogpost;
 
 const Article = tw.article`
+relative
 flex 
 flex-col 
 items-start 

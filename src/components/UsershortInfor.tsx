@@ -20,7 +20,7 @@ const UsershortInfor = ({ userName, displayName = true }: { userName: string, di
 
     return <>
         {userData ?
-            <Link to={'/' + userName} className="flex items-start justify-start gap-3 w-full">
+            <Link to={'/' + userName} className="flex items-start justify-start gap-3">
                 {
                     userData ?
                         <>
