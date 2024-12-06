@@ -247,5 +247,5 @@ flex-col
 gap-4
 justify-center
 px-4
-pb-10
+pb-16
 `

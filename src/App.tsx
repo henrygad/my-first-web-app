@@ -492,6 +492,8 @@ const App = () => {
       });
   };
 
+
+
   useEffect(() => {
     if (isLogin) {
       handleFetchProfileData();

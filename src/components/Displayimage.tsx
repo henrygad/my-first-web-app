@@ -26,7 +26,7 @@ const Displayimage = ({
         <img
             id={id}
             src={(imageId?.trim() ? endPiont + '/api/image/' + imageId : imageUrl?.trim() ? imageUrl : ' ')}
-            className={` ${imageLoading ? "border border-slate-100 bg-slate-100 animate-pulse" : ""}  ${imageClass} bg-slate-100 dark:bg-stone-800 `}
+            className={` ${imageLoading ? "border border-slate-100 bg-slate-100 animate-pulse" : ""}  ${imageClass} bg-white dark:bg-stone-800 dark:text-white `}
             style={{ width: '100%', height: '100%' }}
             onError={(e) => {
                 if (e.target instanceof HTMLImageElement) {

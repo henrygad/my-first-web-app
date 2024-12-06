@@ -136,7 +136,6 @@ const Singlenotification = ({ notification, displayImage }: Props) => {
         return <LandLoading loading={loadingDelete} />
     };
 
-
     return <div
         id="comment-Notifications-layout"
         className={`w-full p-2 space-y-1 ${checked ? ' ' : 'bg-yellow-100 dark:bg-yellow-600 '} rounded cursor-pointer`}
@@ -159,14 +158,19 @@ const Singlenotification = ({ notification, displayImage }: Props) => {
                 }
             </div>
         </div>
-        <div className="w-full flex justify-between items-center ">
+        <div className="w-full flex justify-between items-center gap-4 ">
             <div className="text-sm font-text text-wrap truncate">{
                 <>
                     {reStructureIncomingNotifications.map((item, index) =>
                         index > 2 ?
-                            <span key={item._id}>
-                                 ,  + {(reStructureIncomingNotifications.length - 3)} others
-                            </span> :
+                            <>
+                                {
+                                    index > 3 ? null :
+                                        <span key={item._id}>
+                                            ,  + {(reStructureIncomingNotifications.length - 3)} others
+                                        </span>
+                                }
+                            </> :
                             (reStructureIncomingNotifications.length - 1) === index &&
                                 (reStructureIncomingNotifications.length - 1) > 0 &&
                                 item.notifyFrom.trim() ?
@@ -174,14 +178,14 @@ const Singlenotification = ({ notification, displayImage }: Props) => {
                                     , and <span className="font-bold">{item.notifyFrom.slice(1)}</span>
                                 </span> :
                                 <span key={item._id}>
-                                    {index > 0 ? ', ' : '' }
+                                    {index > 0 ? ', ' : ''}
                                     <span className="font-bold">{item.notifyFrom.slice(1)}</span>
                                 </span>
                     )}
                     <span className="ml-1" dangerouslySetInnerHTML={{ __html: msg }}></span>
                 </>
             }</div>
-            <div className="flex-1 flex justify-end gap-4">
+            <div className="flex-1 flex justify-end">
                 <Button
                     id="delete-notification"
                     buttonClass=""
@@ -190,8 +194,6 @@ const Singlenotification = ({ notification, displayImage }: Props) => {
                 />
             </div>
         </div>
-
-
     </div>
 };
 

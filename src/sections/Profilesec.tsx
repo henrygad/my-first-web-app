@@ -8,7 +8,7 @@ import Followerssec from './Followerssec';
 import Followingsec from './Followingsec';
 import Interentssec from './Interentssec';
 import { Link } from 'react-router-dom';
-import Avatersec from './Avatersec';
+import Avatersec from './Avatarsec';
 import avaterPlaceholder from '../assert/avaterplaceholder.svg'
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import { Page404 } from '../pages';
@@ -287,7 +287,7 @@ const Profilesec = (
                       </div>
                       <Tab
                         id='profile-tab'
-                        tabClass=""
+                        tabClass="max-h-full overflow-y-auto"
                         currentTab={currentProfileDialogTab}
                         arrOfTab={[
                           {

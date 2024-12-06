@@ -29,7 +29,7 @@ const Notification = () => {
       return acc;
     }, [])
   };
-
+  
   return <div>
     <Backwardnav pageName="Notifications" />
     <div className="w-full space-y-2">

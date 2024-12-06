@@ -24,7 +24,7 @@ const Followerssec = ({ arrOfFollowers }: { arrOfFollowers: string[] }) => {
         }, 10000);
     }, []);
 
-    return <div className="space-y-3">
+    return <div className="space-y-3 pt-4 pb-6 " >
         {arrOfFollowers &&
             arrOfFollowers.length ?
             <>

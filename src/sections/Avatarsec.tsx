@@ -38,8 +38,8 @@ const Avatersec = ({
     handleAutoLoadMoreAvater();
   }, [scrollPercent]);
 
-  return <div id="profile-advater" className="w-full">
-    <div className="w-full flex flex-wrap justify-center gap-2" >
+  return <div id="profile-advater" className="w-full flex justify-center">
+    <div className="w-full flex flex-wrap justify-start gap-4" >
       {
         !profileAvatersLoading ?
           <>{
@@ -58,11 +58,11 @@ const Avatersec = ({
               </> :
               null
           }</> :
-          <div className="w-full flex flex-wrap justify-center gap-2">
+          <>
             {Array(3).fill('').map((_, index) =>
               <Imageplaceholder key={index} />
             )}
-          </div>
+          </>
       }
     </div>
     <LandLoading loading={moreAvatersLoading} />

@@ -130,11 +130,11 @@ const SingleImage = ({ image: { _id, uploader, fieldname }, index, placeHolder =
         <Dialog
             id='image-dialog-wrapper'
             parentClass=''
-            childClass='container relative rounded-sm space-y-2 w-full h-full'
+            childClass='container w-full h-full bg-white dark:bg-stone-800 dark:text-white'
             currentDialog={_id}
             children={
-                <>
-                    <div className="absolute -top-1 -left-1 z-50">
+                <div className="w-full h-full flex  justify-center items-center">
+                    <div className="absolute top-3 left-3 z-50">
                         <Button
                             id="authentication-dialog-close-btn"
                             buttonClass='absolute top-1 left-1'
@@ -149,7 +149,7 @@ const SingleImage = ({ image: { _id, uploader, fieldname }, index, placeHolder =
                         imageClass='object-contain'
                         placeHolder={placeHolder.trim() !== '' ? placeHolder : ''}
                     />
-                </>
+                </div>
             }
             dialog={imageDialog}
             setDialog={setDialog}

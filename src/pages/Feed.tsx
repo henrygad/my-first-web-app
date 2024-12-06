@@ -15,8 +15,10 @@ const Feed = ({ streamedFeeds, setStreamedFeeds }: { streamedFeeds: Blogpostprop
     } } = useAppSelector((state) => state.userProfileSlices);
 
     const { data: users, loading: loadingUsers } =
-        useFetchData<Userprops[]>(getProfileData && getProfileData.following.length <= 0 ? '/api/users?skip=0&limit=10' : null,
-            [getProfileData && getProfileData.following]);
+        useFetchData<Userprops[]>(getProfileData && 
+            getProfileData.timeline?.length <= 1 ? '/api/users?skip=0&limit=10' : '',
+            [getProfileData && getProfileData?.timeline]);
+
     const [peopleToFollow, setPeopleToFollow] = useState<Userprops[]>([]);
 
     const { timelineFeeds: {
@@ -95,13 +97,16 @@ const Feed = ({ streamedFeeds, setStreamedFeeds }: { streamedFeeds: Blogpostprop
         };
     }, [users, getProfileData?.userName]);
 
+
+    useEffect(()=>{
+        if(getProfileData && getProfileData.timeline?.length > 1){
+            handleRefreshFeeds();
+        };
+    }, [getProfileData && getProfileData?.timeline]);
+
     useEffect(() => {
         handleLoadFeedsOnScroll();
     }, [scrollPercent]);
-
-
-    const test = Array(4).fill('');
-
 
     return <div className="relative justify-center space-y-8">
         <div className="flex items-center mb-4">
@@ -111,12 +116,12 @@ const Feed = ({ streamedFeeds, setStreamedFeeds }: { streamedFeeds: Blogpostprop
         </div>
         {
             getProfileData &&
-                getProfileData.following.length <= 0 ?
+            getProfileData.timeline?.length <= 1 ?
                 <div id="list-of-user-you-might-know" className="mt-4">
                     {
                         !loadingUsers ?
                             <>
-                                <div>
+                                <div className="mb-6">
                                     <span className="text-2xl font-primary font-semibold">
                                         Suggested for you
                                     </span>
@@ -143,7 +148,7 @@ const Feed = ({ streamedFeeds, setStreamedFeeds }: { streamedFeeds: Blogpostprop
                                 </div>
                             </> :
                             <>
-                                <div className="animate-pulse">
+                                <div className="animate-pulse mb-6">
                                     <span className="h-2 min-w-[100px] bg-slate-200">
                                     </span>
                                 </div>
@@ -152,7 +157,7 @@ const Feed = ({ streamedFeeds, setStreamedFeeds }: { streamedFeeds: Blogpostprop
                                         Array(2).fill('').map((_, index) =>
                                             <div key={index} className="w-full flex justify-start items-start gap-2 animate-pulse">
                                                 <div id="image-pulse" className="w-10 h-10 bg-slate-200 rounded-full"></div>
-                                                <div className="w-[80px] h-2 bg-slate-200 rounded-sm mt-2"></div>
+                                                <div className="w-[50px] h-2 bg-slate-200 rounded-sm mt-2"></div>
                                             </div>
                                         )
                                     }

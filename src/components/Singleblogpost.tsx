@@ -293,6 +293,7 @@ const Singleblogpost = ({
             <Viewbutton
                 arrOfViews={views}
                 apiForView={'/api/viewblogpost/' + _id}
+                authorUsername={authorUserName}
                 apiGetViews={"/api/blogpost/view/" + _id}
                 elementRef={blogpostRef}
                 onLoadView={type?.trim() !== 'text' ? true : false}

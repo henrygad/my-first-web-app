@@ -15,8 +15,13 @@ const UsershortInfor = ({ userName, displayName = true }: { userName: string, di
         if (data) {
             setUserData(data)
             localStorage.setItem(data.userName, JSON.stringify(data));
+        }else {
+            setUserData(null)
+            localStorage.removeItem(userName);
         };
+       
     }, [!data]);
+
 
     return <>
         {userData ?
@@ -34,8 +39,8 @@ const UsershortInfor = ({ userName, displayName = true }: { userName: string, di
                             />
                             {displayName ?
                                 <div className='flex flex-col font-secondary '>
-                                    <span id='name' className='text-sm font-semibold' >{userData.name}</span>
-                                    <span id='userName' className='text-[0.8rem] opacity-50 ' >{userData.userName}</span>
+                                    <span id='name' className='text-sm font-semibold text-wrap break-words'>{userData.name}</span>
+                                    <p id='userName' className='text-xs opacity-50 break-all' >{userData.userName}</p>
                                 </div> :
                                 null}
                         </> :
@@ -43,9 +48,9 @@ const UsershortInfor = ({ userName, displayName = true }: { userName: string, di
                 }
             </Link>
             :
-            <div className="flex items-start justify-start gap-3 animate-pulse">
+            <div className="flex items-start justify-start gap-1 animate-pulse">
                 <div id="image-pulse" className="h-9 w-9 bg-slate-200 rounded-full"></div>
-                <div className="w-[80px] h-2 bg-slate-200 rounded-sm"></div>
+                {displayName ?<div className="w-[50px] h-2 bg-slate-200 rounded-sm"></div> : null}
             </div>}
     </>
 }

@@ -208,7 +208,7 @@ const Signupuser = ({ switchPages, closePages }: Props) => {
                                 isTrue: (
                                     errorVerifyEmail.trim() !== ""
                                 ),
-                                errorMsg: errorVerifyEmail.trim(),
+                                errorMsg: errorVerifyEmail,
                             }}
                         />
                         <span className='text-sm font-text'>OTP Token Has Been Sent to this  Email: {emailToVerify}</span>

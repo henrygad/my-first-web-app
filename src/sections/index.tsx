@@ -3,7 +3,7 @@ import Profilesec from "./Profilesec";
 import Blogpostsec from "./Blogpostsec";
 import Ownerprofilesec from "./Ownerprofilesec";
 import Othersprofilesec from "./Othersprofilesec";
-import Advatersec from "./Avatersec";
+import Advatersec from "./Avatarsec";
 import Followerssec from "./Followerssec";
 import Followingsec from "./Followingsec";
 import Interentssec from "./Interentssec";

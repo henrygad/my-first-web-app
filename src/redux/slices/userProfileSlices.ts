@@ -35,6 +35,7 @@ const userProfile = createSlice({
             const { data } = state.userProfile;
             if (!data) return;
             state.userProfile.data = { ...data, following: [...data.following, action.payload.userName] };
+            state.userProfile.data = { ...data, timeline: [...data.timeline, action.payload.userName] };
         },
         unFollow: (state, action: { payload: { userName: string } }) => {
             const { data } = state.userProfile;
@@ -42,6 +43,10 @@ const userProfile = createSlice({
             state.userProfile.data = {
                 ...data,
                 following: data.following.filter(item => item !== action.payload.userName)
+            };
+            state.userProfile.data = {
+                ...data,
+                timeline: data.timeline.filter(item => item !== action.payload.userName)
             };
         },
         upDatefollowers: (state, action: { payload: { followers: string[] } }) => {

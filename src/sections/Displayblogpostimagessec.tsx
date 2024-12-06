@@ -70,7 +70,7 @@ const Displayblogpostimagessec = ({ selection = false }: { selection?: boolean }
                     blogpostImages &&
                         blogpostImages.length ?
                         <>{
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap justify-start gap-2">
                                 {blogpostImages.map((item, index) =>
                                     <div className="relative" key={item._id}>
                                         {selection ?

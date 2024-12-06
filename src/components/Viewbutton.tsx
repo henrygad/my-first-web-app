@@ -1,26 +1,27 @@
 import { useEffect, useState } from "react";
-import { useFetchData, useNotification, usePatchData, useUserIsLogin } from "../hooks";
+import { useNotification, usePatchData, useUserIsLogin } from "../hooks";
 import { IoStatsChart } from "react-icons/io5"
 import Button from "./Button";
 
 type Props = {
     apiForView: string
-    apiGetViews: string
     arrOfViews: string[]
+    authorUsername: string,
+    apiGetViews: string,
     elementRef: React.MutableRefObject<HTMLElement | null>
     onLoadView: boolean
     notificationUrl: string
     notificationTitle: string
 };
 
-const Viewbutton = ({ apiForView, apiGetViews, arrOfViews, onLoadView = false, elementRef, notificationTitle, notificationUrl }: Props) => {
+const Viewbutton = ({ apiForView, arrOfViews, authorUsername, onLoadView = false, elementRef, notificationTitle, notificationUrl }: Props) => {
     
-    const { loginStatus: { loginUserName, sessionId } } = useUserIsLogin();
+    const { loginStatus: { sessionId } } = useUserIsLogin();
     const [views, setViews] = useState<string[]>(arrOfViews);
     const { patchData } = usePatchData();
     const notify = useNotification();
 
-    const handleView = async (apiForView: string, sessionId: string) => {
+    const handleView = async (apiForView: string, sessionId: string) => {       
         if (sessionId.trim() 
             && views.includes(sessionId)) return;
         const body = null;
@@ -28,6 +29,7 @@ const Viewbutton = ({ apiForView, apiGetViews, arrOfViews, onLoadView = false, e
         const { data } = response;
         if (data) {
             setViews((pre) => pre ? [...pre, data.view] : pre);
+            
             if (views.length === 21) {
                 handleViewsNotification(views.length);
             };
@@ -58,12 +60,12 @@ const Viewbutton = ({ apiForView, apiGetViews, arrOfViews, onLoadView = false, e
     };
 
     const handleViewsNotification = async (views: number) => {
-        const url = '/api/notification/' + loginUserName;
+        const url = '/api/notification/' + authorUsername;
         const body = {
             typeOfNotification: 'view',
             msg: `${views}+ people have viewed, ${notificationTitle}`,
             url: notificationUrl,
-            notifyFrom: 'blogback',
+            notifyFrom: 'blogsup',
         };
 
         await notify(url, body);
